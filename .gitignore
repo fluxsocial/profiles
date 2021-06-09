@@ -7,3 +7,4 @@ dist/
 !*icons.js
 !*config.js
 *.js.map
+*.dna
