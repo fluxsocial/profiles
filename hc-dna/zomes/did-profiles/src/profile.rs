@@ -10,7 +10,9 @@ use crate::{
 
 pub fn create_profile(create_data: ProfileInput) -> ExternResult<()> {
     //Validate did
-    let (did, did_hash) = did_validate_and_check_integrity(&create_data.author.did, false)?;
+    Uri::from_str(&create_data.author.did).map_err(|did_err| err(format!("{}", did_err.kind()).as_ref()))?;
+    let did = Did(create_data.author.did);
+    let did_hash = hash_entry(&did)?;
 
     //Resolve did document from trusted did resolver DHT
     //Validate resolved did document and that the signed_agent field received by this function was signed by key in did
