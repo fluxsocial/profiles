@@ -1,8 +1,4 @@
-import type Expression from "@perspect3vism/ad4m/Expression";
-import type Agent from "@perspect3vism/ad4m/Agent";
-import type { GetByAuthorAdapter } from "@perspect3vism/ad4m/Language";
-import type LanguageContext from "@perspect3vism/ad4m/LanguageContext";
-import type { HolochainLanguageDelegate } from "@perspect3vism/ad4m/LanguageContext";
+import type { Expression, Agent, GetByAuthorAdapter, LanguageContext, HolochainLanguageDelegate } from "@perspect3vism/ad4m";
 import { DNA_NICK } from "./dna";
 
 export default class ProfileAuthorAdapter implements GetByAuthorAdapter {
@@ -16,16 +12,16 @@ export default class ProfileAuthorAdapter implements GetByAuthorAdapter {
   //might not be a clear 1:1 mapping for did to agents
   ///Get expressions authored by a given Agent/Identity
   async getByAuthor(
-    author: Agent,
+    author: string,
     count: number,
     page: number
-  ): Promise<void | Expression[]> {
+  ): Promise<Expression[]> {
     //TODO: resolve did
     const expression = await this.#DNA.call(
       DNA_NICK,
       "did-profiles",
       "get_profile",
-      author.did
+      author
     );
     if (expression != null) {
       var cloneRes = Object.assign({}, expression);
@@ -33,7 +29,7 @@ export default class ProfileAuthorAdapter implements GetByAuthorAdapter {
       delete cloneRes.timestamp;
       let ad4mExpression: Expression = {
         author: {
-          did: author.did,
+          did: author,
         } as Agent,
         proof: expression.proof,
         timestamp: expression.timestamp,

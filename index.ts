@@ -1,9 +1,4 @@
-import type Address from "@perspect3vism/ad4m/Address";
-import type Agent from "@perspect3vism/ad4m/Agent";
-import type Language from "@perspect3vism/ad4m/Language";
-import type LanguageContext from "@perspect3vism/ad4m/LanguageContext";
-import type { HolochainLanguageDelegate } from "@perspect3vism/ad4m/LanguageContext";
-import type { Interaction } from "@perspect3vism/ad4m/Language";
+import type { Address, Agent, Language, LanguageContext, HolochainLanguageDelegate, Interaction } from "@perspect3vism/ad4m";
 import ProfileAdapter from "./adapter";
 import ProfileAuthorAdapter from "./authorAdapter";
 import Icon from "./build/Icon.js";
@@ -19,7 +14,7 @@ function constructorIcon(): string {
   return ConstructorIcon;
 }
 
-function interactions(a: Agent, expression: Address): Interaction[] {
+function interactions(expression: Address): Interaction[] {
   return [];
 }
 

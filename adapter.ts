@@ -1,13 +1,4 @@
-import type Address from "@perspect3vism/ad4m/Address";
-import type Agent from "@perspect3vism/ad4m/Agent";
-import type Expression from "@perspect3vism/ad4m/Expression";
-import type {
-  ExpressionAdapter,
-  PublicSharing,
-} from "@perspect3vism/ad4m/Language";
-import type LanguageContext from "@perspect3vism/ad4m/LanguageContext";
-import type { HolochainLanguageDelegate } from "@perspect3vism/ad4m/LanguageContext";
-import type AgentService from "@perspect3vism/ad4m/AgentService";
+import type { Address, Agent, Expression, ExpressionAdapter, PublicSharing, LanguageContext, HolochainLanguageDelegate, AgentService } from "@perspect3vism/ad4m";
 import { DNA_NICK } from "./dna";
 
 class ProfilePutAdapter implements PublicSharing {
@@ -48,7 +39,7 @@ export default class ProfileAdapter implements ExpressionAdapter {
     this.putAdapter = new ProfilePutAdapter(context);
   }
 
-  async get(address: Address): Promise<void | Expression> {
+  async get(address: Address): Promise<Expression> {
     console.log("Getting expression with address", address);
     const expression = await this.#DNA.call(
       DNA_NICK,
