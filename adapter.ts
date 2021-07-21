@@ -1,4 +1,4 @@
-import type { Address, Agent, Expression, ExpressionAdapter, PublicSharing, LanguageContext, HolochainLanguageDelegate, AgentService } from "@perspect3vism/ad4m";
+import type { Address, Expression, ExpressionAdapter, PublicSharing, LanguageContext, HolochainLanguageDelegate, AgentService } from "@perspect3vism/ad4m";
 import { DNA_NICK } from "./dna";
 
 class ProfilePutAdapter implements PublicSharing {
@@ -25,7 +25,7 @@ class ProfilePutAdapter implements PublicSharing {
       "create_profile",
       expression
     );
-    return expression.author.did;
+    return expression.author;
   }
 }
 
@@ -52,9 +52,7 @@ export default class ProfileAdapter implements ExpressionAdapter {
       delete cloneRes.proof;
       delete cloneRes.timestamp;
       let ad4mExpression: Expression = {
-        author: {
-          did: address,
-        } as Agent,
+        author: address,
         proof: expression.proof,
         timestamp: expression.timestamp,
         data: cloneRes.data
