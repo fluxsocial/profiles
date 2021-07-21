@@ -10,8 +10,8 @@ use crate::{
 
 pub fn create_profile(create_data: ProfileInput) -> ExternResult<()> {
     //Validate did
-    Uri::from_str(&create_data.author.did).map_err(|did_err| err(format!("{}", did_err.kind()).as_ref()))?;
-    let did = Did(create_data.author.did);
+    Uri::from_str(&create_data.author).map_err(|did_err| err(format!("{}", did_err.kind()).as_ref()))?;
+    let did = Did(create_data.author);
     let did_hash = hash_entry(&did)?;
 
     //Resolve did document from trusted did resolver DHT
@@ -114,7 +114,7 @@ pub fn register_did(register_did: RegisterDidInput) -> ExternResult<()> {
 
 pub fn add_profile(add_profile: ProfileInput) -> ExternResult<()> {
     //Validate did
-    let (_did, did_hash) = did_validate_and_check_integrity(&add_profile.author.did, true)?;
+    let (_did, did_hash) = did_validate_and_check_integrity(&add_profile.author, true)?;
 
     //Add profile entry
     let did_profile = Profile{

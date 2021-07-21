@@ -15,7 +15,7 @@ pub struct RegisterDidInput {
 
 #[derive(Serialize, Deserialize, SerializedBytes, Debug, Clone)]
 pub struct ProfileInput {
-    pub author: Agent,
+    pub author: String,
     pub data: ExpressionData,
     pub proof: ExpressionProof,
     pub timestamp: DateTime<Utc>,
