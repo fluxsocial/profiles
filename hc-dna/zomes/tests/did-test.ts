@@ -28,7 +28,7 @@ orchestrator.registerScenario("create a profile and update it", async (s, t) => 
         "did-profiles",
         "create_profile",
         {
-          author: { did: 'did:key:zQ3shNgAH1yUW21P5se2jnkRW1PtoyaS8SrGRr8LBhLJw1SY7' },
+          author: 'did:key:zQ3shNgAH1yUW21P5se2jnkRW1PtoyaS8SrGRr8LBhLJw1SY7',
           timestamp: '2021-05-19T14:04:02.366Z',
           data: {
             '@context': {"foaf": "http://xmlns.com/foaf/0.1/"},
@@ -55,7 +55,7 @@ orchestrator.registerScenario("create a profile and update it", async (s, t) => 
         "did-profiles",
         "create_profile",
         {
-          author: { did: 'did:key:zQ3shNgAH1yUW21P5se2jnkRW1PtoyaS8SrGRr8LBhLJw1SY7' },
+          author: 'did:key:zQ3shNgAH1yUW21P5se2jnkRW1PtoyaS8SrGRr8LBhLJw1SY7',
           timestamp: '2021-05-19T14:04:02.366Z',
           data: {
             '@context': {"foaf": "http://xmlns.com/foaf/0.1/"},
