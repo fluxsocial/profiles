@@ -15,13 +15,19 @@ const installation: InstallAgentsHapps = [
 
 const orchestrator = new Orchestrator()
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 orchestrator.registerScenario("create a profile and update it", async (s, t) => {
     const [alice, bob] = await s.players([conductorConfig, conductorConfig]);
 
     // install your happs into the coductors and destructuring the returned happ data using the same
     // array structure as you created in your installation array.
     const [[alice_profiles]] = await alice.installAgentsHapps(installation);
-    //const [[bob_profiles]] = await bob.installAgentsHapps(installation);
+    const [[bob_profiles]] = await bob.installAgentsHapps(installation);
+
+    await s.shareAllNodes([alice, bob])
 
     //Test creating a profile with secp256k1
     let createProfile = await alice_profiles.cells[0].call(
@@ -76,6 +82,34 @@ orchestrator.registerScenario("create a profile and update it", async (s, t) => 
       "did:key:zQ3shNgAH1yUW21P5se2jnkRW1PtoyaS8SrGRr8LBhLJw1SY7"
     );
     console.log("Got did profile2", getProfile2);
+
+    let createBobProfile = await bob_profiles.cells[0].call(
+      "did-profiles",
+      "create_profile",
+      {
+        author: 'did:key:zQ3shvqJUNif3PTFMPAtw5jL81tocoM3bCvddgsJYPC3iud2P',
+        timestamp: '2021-05-19T14:04:02.366Z',
+        data: {
+          '@context': {"foaf": "http://xmlns.com/foaf/0.1/"},
+          profile: { 'foaf:AccountName': 'BOB', '@type': 'foaf:OnlineAccount' },
+          signed_agent: 'NA'
+        },
+        proof: {
+          key: '#zQ3shvqJUNif3PTFMPAtw5jL81tocoM3bCvddgsJYPC3iud2P',
+          signature: 'cdfc9802db7213255f04f581b089334fe171fe6bee2ee9d21a71b3d8bac974cc56059bdb07619e319b9d782edc224be80655c8f3b7c994f1a0e6e300dc3ee679'
+        }
+      }
+    );
+    t.ok(createBobProfile);
+
+    await sleep(2000);
+
+    let getProfile3 = await alice_profiles.cells[0].call(
+      "did-profiles",
+      "get_profile",
+      "did:key:zQ3shvqJUNif3PTFMPAtw5jL81tocoM3bCvddgsJYPC3iud2P"
+    );
+    console.log("Got did profile3", getProfile3);
 })
 
 const report = orchestrator.run();
