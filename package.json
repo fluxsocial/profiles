@@ -1,6 +1,6 @@
 {
   "name": "profiles",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "AD4M Language implementation for Holochain profile DNA",
   "main": "index.js",
   "scripts": {
