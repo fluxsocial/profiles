@@ -118,7 +118,6 @@ export default class ProfileAdapter implements ExpressionAdapter {
         }
         cloneRes.data.profile['schema:image'] = JSON.stringify(cloneRes.data.profile['schema:image']);
       }
-      console.log("resulting", cloneRes);
 
       delete cloneRes.proof;
       delete cloneRes.timestamp;
