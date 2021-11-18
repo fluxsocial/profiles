@@ -136,7 +136,7 @@ pub fn add_profile(add_profile: ProfileInput) -> ExternResult<()> {
 }
 
 fn get_latest_link(base: EntryHash, tag: Option<LinkTag>) -> ExternResult<Option<Link>> {
-    let profile_info = get_links(base.into(), tag)?.into_inner();
+    let profile_info = get_links(base.into(), tag)?;
 
     // Find the latest
     let latest_info =
