@@ -18,7 +18,7 @@ function interactions(expression: Address): Interaction[] {
   return [];
 }
 
-export const name = "agent-profiles";
+export const name = "profile-expression";
 
 export default async function create(context: LanguageContext): Promise<Language> {
   const Holochain = context.Holochain as HolochainLanguageDelegate;
