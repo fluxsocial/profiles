@@ -18,6 +18,10 @@ function interactions(expression: Address): Interaction[] {
   return [];
 }
 
+function isImmutableExpression(expression: Address): boolean {
+  return false
+}
+
 export const name = "profile-expression";
 
 export default async function create(context: LanguageContext): Promise<Language> {
@@ -36,5 +40,6 @@ export default async function create(context: LanguageContext): Promise<Language
     constructorIcon,
     interactions,
     expressionUI,
+    isImmutableExpression
   } as Language;
 }

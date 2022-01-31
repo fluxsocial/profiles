@@ -1,5 +1,5 @@
-import type { Address, Expression, ExpressionAdapter, PublicSharing, LanguageContext, HolochainLanguageDelegate, AgentService, IPFSNode } from "@perspect3vism/ad4m";
-import { profile } from "console";
+import type { Address, Expression, ExpressionAdapter, PublicSharing, LanguageContext, HolochainLanguageDelegate, AgentService } from "@perspect3vism/ad4m";
+import type { IPFS } from "ipfs-core-types";
 import { DNA_NICK } from "./dna";
 
 const _appendBuffer = (buffer1, buffer2) => {
@@ -15,7 +15,7 @@ const uint8ArrayConcat = (chunks) => {
 
 class ProfilePutAdapter implements PublicSharing {
   #agent: AgentService;
-  #IPFS: IPFSNode;
+  #IPFS: IPFS;
   #DNA: HolochainLanguageDelegate;
 
   constructor(context: LanguageContext) {
@@ -72,7 +72,7 @@ class ProfilePutAdapter implements PublicSharing {
 
 export default class ProfileAdapter implements ExpressionAdapter {
   #DNA: HolochainLanguageDelegate;
-  #IPFS: IPFSNode;
+  #IPFS: IPFS;
 
   putAdapter: PublicSharing;
 
